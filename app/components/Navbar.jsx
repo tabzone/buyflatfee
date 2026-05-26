@@ -1,48 +1,113 @@
-"use client";
-
-import Link from "next/link";
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/how-it-works', label: 'How It Works' },
+    { href: '/calculator', label: 'Savings Calculator' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/about', label: 'About' },
+    { href: '/faq', label: 'FAQ' },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-[#0a1628]/95 backdrop-blur-md shadow-lg shadow-black/20 py-3'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8c97a] flex items-center justify-center shadow-lg">
+            <span className="text-[#0a1628] font-bold text-lg font-display">B</span>
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span className="font-display text-white font-bold text-xl tracking-tight">BuyFlatFee</span>
+            <span className="text-[#c9a84c] text-[10px] font-medium uppercase tracking-widest">Real Estate</span>
+          </div>
+        </Link>
 
-      <div className="max-w-7xl mx-auto px-8">
-
-        <div className="h-24 flex items-center justify-between">
-
-          <Link
-            href="/"
-            className="text-3xl font-black tracking-tight"
-          >
-            BuyFlatFee
-          </Link>
-
-          <nav className="hidden lg:flex gap-10 text-sm">
-
-            <Link href="/">Home</Link>
-
-            <Link href="/how-it-works">
-              How It Works
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-white/80 hover:text-[#c9a84c] text-sm font-medium transition-colors duration-200 relative group"
+            >
+              {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#c9a84c] group-hover:w-full transition-all duration-300 rounded-full" />
             </Link>
-
-            <Link href="/pricing">
-              Pricing
-            </Link>
-
-            <Link href="/faq">
-              FAQ
-            </Link>
-
-          </nav>
-
-          <button className="rounded-full bg-black px-7 py-3 text-white hover:scale-105 transition">
-            Schedule Call
-          </button>
-
+          ))}
         </div>
 
+        {/* CTA */}
+        <div className="hidden lg:flex items-center gap-3">
+          <a
+            href="tel:+14151234567"
+            className="text-white/70 hover:text-[#c9a84c] text-sm font-medium transition-colors flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            (415) 123-4567
+          </a>
+          <Link
+            href="/contact"
+            className="btn-gold px-5 py-2.5 rounded-xl text-sm font-semibold"
+          >
+            Get Started Free
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="lg:hidden text-white p-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <div className={`w-6 h-0.5 bg-current transition-all ${menuOpen ? 'rotate-45 translate-y-1.5' : ''} mb-1.5`} />
+          <div className={`w-6 h-0.5 bg-current transition-all ${menuOpen ? 'opacity-0' : ''} mb-1.5`} />
+          <div className={`w-6 h-0.5 bg-current transition-all ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+        </button>
       </div>
 
-    </header>
+      {/* Mobile Menu */}
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="bg-[#0a1628]/98 backdrop-blur-md border-t border-white/10 px-6 py-4 flex flex-col gap-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-white/80 hover:text-[#c9a84c] text-base font-medium py-1 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            className="btn-gold px-5 py-3 rounded-xl text-sm font-semibold text-center mt-2"
+            onClick={() => setMenuOpen(false)}
+          >
+            Get Started Free
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 }
