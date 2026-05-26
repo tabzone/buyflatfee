@@ -197,7 +197,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/calculator"
-                className="btn-outline-gold px-8 py-4 rounded-xl text-base font-semibold text-center"
+                className="btn-outline-gold px-8 py-4 rounded-xl text-base font-semibold text-center "
               >
                 Calculate My Savings
               </Link>
@@ -216,7 +216,7 @@ export default function HomePage() {
         {/* Bottom wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 80L1440 80L1440 20C1200 70 900 0 720 30C540 60 240 10 0 40L0 80Z" fill="#f9f6f0"/>
+            <path d="M0 80L1440 80L1440 20C1200 70 900 0 720 30C540 60 240 10 0 40L0 80Z" fill="#f9f6f0" />
           </svg>
         </div>
       </section>
@@ -255,8 +255,14 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
-            {steps.map((s) => (
-              <div key={s.step} className="relative card-hover animate-fade-up opacity-0">
+
+            {steps.map((s, index) => (
+              <div key={s.step} className="relative card-hover animate-fade-up ">
+                {index !== steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 text-[#c9a84c] text-2xl z-10">
+                    →
+                  </div>
+                )}
                 <div className="bg-white rounded-3xl p-8 h-full border border-gray-100 shadow-sm">
                   <div className="w-14 h-14 bg-gradient-to-br from-[#c9a84c] to-[#e8c97a] rounded-2xl flex items-center justify-center text-2xl mb-5 shadow-lg">
                     {s.icon}

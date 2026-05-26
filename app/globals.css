@@ -1,47 +1,62 @@
 @import "tailwindcss";
 
+/* ==========================
+   DESIGN TOKENS
+========================== */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --navy: #101828;
+  --cream: #faf8f4;
+
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+
+  --shadow:
+    0 30px 80px rgba(0,0,0,.08);
 }
+
+/* Tailwind v4 */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* ---------- WEBSITE STYLING ---------- */
+/* ==========================
+   GLOBAL
+========================== */
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #faf8f4;
+  background: var(--cream);
   color: #111;
+
+  font-family:
+    var(--font-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  margin: 0;
+
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
 }
 
 * {
   box-sizing: border-box;
-}
-
-button {
-  cursor: pointer;
 }
 
 img {
@@ -49,31 +64,307 @@ img {
   max-width: 100%;
 }
 
-section {
-  overflow: hidden;
+button {
+  cursor: pointer;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section {
+  position: relative;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.container-xl {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.soft-shadow {
+  box-shadow: var(--shadow);
+}
+
+.glass {
+  backdrop-filter: blur(24px);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .75
+    );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .35
+    );
+}
+
+/* ==========================
+   HERO
+========================== */
 
 .hero-gradient {
   background:
     radial-gradient(
       circle at top right,
-      rgba(0,0,0,.04),
+      rgba(0,0,0,.05),
       transparent 40%
     ),
+
+    radial-gradient(
+      circle at bottom left,
+      rgba(201,168,76,.08),
+      transparent 35%
+    ),
+
     linear-gradient(
       to bottom,
       #faf8f4,
-      #ffffff
+      white
     );
 }
 
-.glass {
-  backdrop-filter: blur(20px);
+/* ==========================
+   BUTTONS
+========================== */
+
+.btn-gold {
+  position: relative;
+
+  overflow: hidden;
+
   background:
-    rgba(255,255,255,.75);
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-light)
+    );
+
+  color:
+    var(--navy);
+
+  border: none;
+
+  font-weight: 700;
+
+  transition:
+    .3s ease;
+
+  box-shadow:
+    0 12px 40px
+    rgba(
+      201,
+      168,
+      76,
+      .35
+    );
 }
 
-.soft-shadow {
+.btn-gold:hover {
+  transform:
+    translateY(-2px);
+
   box-shadow:
-    0 40px 120px rgba(0,0,0,.08);
+    0 18px 50px
+    rgba(
+      201,
+      168,
+      76,
+      .45
+    );
+}
+
+.btn-gold::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    white;
+
+  opacity: 0;
+
+  transition:
+    .3s;
+}
+
+.btn-gold:hover::after {
+  opacity: .08;
+}
+
+.btn-outline-gold {
+
+  border:
+    2px solid
+    var(--gold);
+
+  color:
+    var(--gold);
+
+  background:
+    transparent;
+
+  transition:
+    .3s;
+}
+
+.btn-outline-gold:hover {
+
+  background:
+    var(--gold);
+
+  color:
+    var(--navy);
+
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.card {
+
+  background:
+    white;
+
+  border-radius:
+    32px;
+
+  padding:
+    32px;
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.card-dark {
+
+  background:
+    var(--navy);
+
+  color:
+    white;
+
+}
+
+/* ==========================
+   DIVIDERS
+========================== */
+
+.section-divider {
+
+  height:
+    120px;
+
+  background:
+
+    linear-gradient(
+      to bottom,
+
+      transparent,
+
+      rgba(0,0,0,.03)
+    );
+
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+.fade-up {
+
+  animation:
+    fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(
+        30px
+      );
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(
+        0
+      );
+
+  }
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar {
+
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      .18
+    );
+
+  border-radius:
+    999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      .35
+    );
+
+}
+.card-hover {
+  transition: .35s ease;
+}
+
+.card-hover:hover {
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.08);
 }
