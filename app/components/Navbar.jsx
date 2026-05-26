@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,22 +24,22 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-[#0a1628]/95 backdrop-blur-md shadow-lg shadow-black/20 py-3'
-          : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+        ? 'bg-[#0a1628]/95 backdrop-blur-md shadow-lg shadow-black/20 py-3'
+        : 'bg-transparent py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8c97a] flex items-center justify-center shadow-lg">
-            <span className="text-[#0a1628] font-bold text-lg font-display">B</span>
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="font-display text-white font-bold text-xl tracking-tight">BuyFlatFee</span>
-            <span className="text-[#c9a84c] text-[10px] font-medium uppercase tracking-widest">Real Estate</span>
-          </div>
+        <Link href="/" className="flex items-center shrink-0">
+          <Image
+            src="/logo.png"
+            alt="BuyFlatFee Logo"
+            width={220}
+            height={60}
+            priority
+            className="h-20 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Links */}
@@ -47,9 +48,19 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-white/80 hover:text-[#c9a84c] text-sm font-medium transition-colors duration-200 relative group"
+              className="
+        !text-white
+        hover:!text-[#c9a84c]
+        text-base
+        font-medium
+        transition-colors
+        duration-200
+        relative
+        group
+      "
             >
               {link.label}
+
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#c9a84c] group-hover:w-full transition-all duration-300 rounded-full" />
             </Link>
           ))}
@@ -93,7 +104,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-white/80 hover:text-[#c9a84c] text-base font-medium py-1 transition-colors"
+              className="text-white hover:text-[#c9a84c] text-base font-medium py-1 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
