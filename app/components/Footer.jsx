@@ -100,7 +100,7 @@ export default function Footer() {
             </li>
             <li className="flex gap-3">
               <span className="text-[#c9a84c]">📞</span>
-              <a href="tel:+14082420283" className="text-white/60 hover:text-[#c9a84c] text-sm transition-colors">(408) 242-0283</a>
+              <a href="tel:+14151234567" className="text-white/60 hover:text-[#c9a84c] text-sm transition-colors">(415) 123-4567</a>
             </li>
             <li className="flex gap-3">
               <span className="text-[#c9a84c]">✉️</span>
@@ -117,7 +117,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10 py-6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>© {currentYear} BuyFlatFee. All rights reserved. CA DRE #XXXXXXX</p>
+          <p>© {currentYear} BuyFlatFee. All rights reserved. </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white/70 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white/70 transition-colors">Terms of Service</Link>
