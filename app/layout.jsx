@@ -1,6 +1,7 @@
 import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FloatingContactButtons from './components/FloatingContactButtons';
 
 export const metadata = {
   title: {
@@ -100,8 +101,8 @@ export default function RootLayout({ children }) {
               },
               areaServed: 'California',
               priceRange: '$7,999 flat fee',
-              telephone: '+14151234567',
-              email: 'hello@buyflatfee.com',
+              telephone: '+14154886657',
+              email: 'info@buyflatfee.com',
               sameAs: [
                 'https://www.facebook.com/buyflatfee',
                 'https://www.instagram.com/buyflatfee',
@@ -115,6 +116,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <FloatingContactButtons />
       </body>
     </html>
   );

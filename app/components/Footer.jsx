@@ -60,7 +60,8 @@ export default function Footer() {
               { href: '/', label: 'Home' },
               { href: '/how-it-works', label: 'How It Works' },
               { href: '/calculator', label: 'Savings Calculator' },
-              { href: '/pricing', label: 'Pricing & Fees' },
+              // { href: '/pricing', label: 'Pricing & Fees' },
+              { href: '/plans', label: 'Plans' },
               { href: '/about', label: 'About Us' },
               { href: '/faq', label: 'FAQ' },
             ].map((link) => (
@@ -100,11 +101,11 @@ export default function Footer() {
             </li>
             <li className="flex gap-3">
               <span className="text-[#c9a84c]">📞</span>
-              <a href="tel:+14151234567" className="text-white/60 hover:text-[#c9a84c] text-sm transition-colors">(415) 123-4567</a>
+              <a href="tel:+14154886657" className="text-white/60 hover:text-[#c9a84c] text-sm transition-colors">(415) 488-6657</a>
             </li>
             <li className="flex gap-3">
               <span className="text-[#c9a84c]">✉️</span>
-              <a href="mailto:hello@buyflatfee.com" className="text-white/60 hover:text-[#c9a84c] text-sm transition-colors">hello@buyflatfee.com</a>
+              <a href="mailto:info@buyflatfee.com" className="text-white/60 hover:text-[#c9a84c] text-sm transition-colors">info@buyflatfee.com</a>
             </li>
             <li className="flex gap-3">
               <span className="text-[#c9a84c]">🕐</span>

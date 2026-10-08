@@ -8,6 +8,7 @@ const timelines = ['ASAP (within 60 days)', '3–6 months', '6–12 months', 'Ju
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [form, setForm] = useState({
     name: '', email: '', phone: '', budget: '', timeline: '', timeSlot: '', message: '', type: 'purchase',
   });
@@ -17,15 +18,32 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'We could not send your message. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error.message || 'We could not send your message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0a1628] pt-32 pb-20 relative overflow-hidden">
+      <section className="bg-[#0a1628] pt-16 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-4">Get In Touch</p>
@@ -55,14 +73,14 @@ export default function ContactPage() {
                   <div className="w-10 h-10 rounded-xl bg-[#c9a84c]/10 flex items-center justify-center text-[#c9a84c] flex-shrink-0">📞</div>
                   <div>
                     <p className="text-xs text-gray-400 mb-0.5">Phone / Text</p>
-                    <a href="tel:+14151234567" className="font-semibold text-[#0a1628] hover:text-[#c9a84c] transition-colors">(415) 123-4567</a>
+                    <a href="tel:+14154886657" className="font-semibold text-[#0a1628] hover:text-[#c9a84c] transition-colors">(415) 488-6657</a>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#c9a84c]/10 flex items-center justify-center text-[#c9a84c] flex-shrink-0">✉️</div>
                   <div>
                     <p className="text-xs text-gray-400 mb-0.5">Email</p>
-                    <a href="mailto:hello@buyflatfee.com" className="font-semibold text-[#0a1628] hover:text-[#c9a84c] transition-colors">hello@buyflatfee.com</a>
+                    <a href="mailto:info@buyflatfee.com" className="font-semibold text-[#0a1628] hover:text-[#c9a84c] transition-colors">info@buyflatfee.com</a>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -90,10 +108,10 @@ export default function ContactPage() {
                 Speak directly with a buyer&apos;s agent. No gatekeeping, no assistant — just the expert.
               </p>
               <a
-                href="tel:+14151234567"
+                href="tel:+14154886657"
                 className="bg-[#0a1628] text-[#c9a84c] px-6 py-3 rounded-xl font-bold text-sm inline-block hover:bg-[#132040] transition-colors w-full text-center"
               >
-                📞 Call (415) 123-4567
+                📞 Call (415) 488-6657
               </a>
             </div>
 
@@ -236,6 +254,10 @@ export default function ContactPage() {
                       className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/20 transition-colors resize-none"
                     />
                   </div>
+
+                  {submitError && (
+                    <p role="alert" className="text-sm text-red-700">{submitError}</p>
+                  )}
 
                   <button
                     type="submit"

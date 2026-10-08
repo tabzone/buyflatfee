@@ -20,11 +20,16 @@
   scroll-behavior: smooth;
 }
 
+html {
+  font-size: 18px;
+}
+
 body {
   background: var(--cream);
   color: var(--text-dark);
   font-family: 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
 }
 
 .font-display {

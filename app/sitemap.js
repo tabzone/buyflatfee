@@ -7,6 +7,7 @@ export default function sitemap() {
     { url: '/how-it-works', priority: 0.9, changeFrequency: 'monthly' },
     { url: '/calculator', priority: 0.9, changeFrequency: 'monthly' },
     { url: '/pricing', priority: 0.9, changeFrequency: 'monthly' },
+    { url: '/plans', priority: 0.9, changeFrequency: 'monthly' },
     { url: '/about', priority: 0.7, changeFrequency: 'monthly' },
     { url: '/faq', priority: 0.8, changeFrequency: 'monthly' },
     { url: '/contact', priority: 0.8, changeFrequency: 'monthly' },

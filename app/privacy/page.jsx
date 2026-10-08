@@ -6,7 +6,7 @@ export const metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <section className="bg-[#0a1628] pt-32 pb-16 relative overflow-hidden">
+      <section className="bg-[#0a1628] pt-16 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <h1 className="font-display text-4xl font-bold text-white">Privacy Policy</h1>
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
               },
               {
                 title: '6. Contact Us',
-                content: 'If you have questions about this Privacy Policy, please contact us at hello@buyflatfee.com or (415) 123-4567.',
+                content: 'If you have questions about this Privacy Policy, please contact us at info@buyflatfee.com or (415) 488-6657.',
               },
             ].map((section) => (
               <div key={section.title}>

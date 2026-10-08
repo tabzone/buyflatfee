@@ -133,7 +133,7 @@ export default function FAQPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#0a1628] pt-32 pb-20 relative overflow-hidden">
+      <section className="bg-[#0a1628] pt-16 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-4">Got Questions?</p>
@@ -205,7 +205,7 @@ export default function FAQPage() {
             <Link href="/contact" className="btn-gold px-8 py-4 rounded-xl font-bold inline-block">
               Book Free Consultation →
             </Link>
-            <a href="tel:+14151234567" className="btn-outline-gold px-8 py-4 rounded-xl font-semibold inline-block">
+            <a href="tel:+14154886657" className="btn-outline-gold px-8 py-4 rounded-xl font-semibold inline-block">
               📞 Call Us Now
             </a>
           </div>
